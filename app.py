@@ -31,6 +31,8 @@ def index():
 
         if api:
             requests.post(api + "api/v2/vote", json=data)
+            
+        return jsonify(code=working, message=f"POST to {api}"), 200
 
 
 if __name__ == '__main__':
