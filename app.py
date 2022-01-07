@@ -8,7 +8,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['JSON_SORT_KEYS'] = False
 
 
-@app.route('/', methods=['POST'])
+@app.route('/vote', methods=['POST'])
 def index():
     if request.method == "POST":
         data = request.get_json()
