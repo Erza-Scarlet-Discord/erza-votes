@@ -15,7 +15,7 @@ def index():
         main = requests.get("https://erza-ai.herokuapp.com")
         backup = requests.get("https://erza-ai-backup.herokuapp.com")
         es26 = requests.get("https://erza-scarlet-26.herokuapp.com")
-        api = None
+        api = False
         if main.status_code == 200:
             print("erza-ai is up and running")
             api = "https://erza-ai.herokuapp.com/"
