@@ -30,7 +30,7 @@ def index():
             print(es26, main, backup)
 
         if api:
-            requests.post(api + "api/v2/vote", json=data)
+            requests.post(api + "api/v2/vote", json=data, headers=flask.request.headers)
             
         return jsonify(code=working, message=f"POST to {api}"), 200
 
