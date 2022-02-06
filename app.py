@@ -4,9 +4,6 @@ from flask_cors import CORS
 import json
 
 app = Flask(__name__)
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
-app.config['JSON_SORT_KEYS'] = False
 
 
 @app.route('/vote', methods=['POST'])
@@ -19,7 +16,7 @@ def index():
         main = requests.get("https://erza-ai.herokuapp.com")
         backup = requests.get("https://erza-ai-backup.herokuapp.com")
         es26 = requests.get("https://erza-scarlet-26.herokuapp.com")
-        api = False
+        api = ""
         if main.status_code == 200:
             print("erza-ai is up and running")
             api = "https://erza-ai.herokuapp.com/"
