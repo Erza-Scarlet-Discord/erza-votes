@@ -31,6 +31,7 @@ def index():
             print(es26, main, backup)
 
         if api:
+            print(api+"api/v2/votes")
             r = requests.post(api + "api/v2/votes", json=(data), headers=headers)
             try:
                 print(r.status_code)
