@@ -35,7 +35,11 @@ def index():
 
         if api:
             r = requests.post(api + "api/v2/votes", json=(data), headers=headers)
-            print(r.status_code)
+            try:
+                print(r.status_code)
+                print(r.text)
+            except Exception as e:
+                print(str(e))
             
         return jsonify(code="working", message=f"POST to {api}"), 200
 
