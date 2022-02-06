@@ -34,7 +34,7 @@ def index():
             print(es26, main, backup)
 
         if api:
-            r = requests.post(api + "api/v2/votes", json=json.dumps(data), headers=headers)
+            r = requests.post(api + "api/v2/votes", json=(data), headers=headers)
             print(r.json())
             
         return jsonify(code="working", message=f"POST to {api}"), 200
