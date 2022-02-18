@@ -20,7 +20,7 @@ def vote():
     elif requests.get("https://erza-ai.herokuapp.com/").status_code == 200:
         api = "https://erza-ai.herokuapp.com/api/v2/votes"
     elif requests.get("https://erza-ai-backup.herokuapp.com/").status_code == 200:
-        api = "https://erza-ai-2.herokuapp.com/api/v2/votes"
+        api = "https://erza-ai-backup.herokuapp.com/api/v2/votes"
 
 
     print(api)
