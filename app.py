@@ -1,46 +1,26 @@
+# basic flask app
+import flask
 import requests
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-import json
+from flask import jsonify
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
-
-@app.route('/vote', methods=['POST'])
-def index():
-    if request.method == "POST":
-        data = request.get_json()
-        headers = request.headers
-        print(headers)
-        print(data)
-        main = requests.get("https://erza-ai.herokuapp.com")
-        backup = requests.get("https://erza-ai-backup.herokuapp.com")
-        es26 = requests.get("https://erza-scarlet-26.herokuapp.com")
-        api = ""
-        if main.status_code == 200:
-            print("erza-ai is up and running")
-            api = "https://erza-ai.herokuapp.com/"
-        elif backup.status_code == 200:
-            print("erza-ai-backup is up and running")
-            api = "https://erza-ai-backup.herokuapp.com/"
-        elif es26.status_code == 200:
-            print("es26 is up and running")
-            api = "https://erza-scarlet-26.herokuapp.com/"
-        else:
-            print("[w] : none of them are up and running")
-            print(es26, main, backup)
-
-        if api:
-            print(api+"api/v2/votes")
-            r = requests.post(api + "api/v2/votes", json=(data), headers=headers)
-            try:
-                print(r.status_code)
-                print(r.text)
-            except Exception as e:
-                print(str(e))
-            
-        return jsonify(code="working", message=f"POST to {api}"), 200
+suffix = ".herokuapp.com"
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/votes', methods=['POST'])
+def vote():
+    # get request headers and data
+    api = "https://localhost:17995/api/v2/votes"
+    headers = flask.request.headers
+    data = flask.request.get_data()
+    # send request to vote server
+    if requests.get("https://erza-scarlet-26" + suffix).status_code == 200:
+        api = "https://erza-scarlet" + suffix + "api/v2/votes"
+    elif requests.get("https://erza-ai" + suffix).status_code == 200:
+        api = "https://erza-ai" + suffix + "api/v2/votes"
+    elif requests.get("https://erza-ai-backup" + suffix).status_code == 200:
+        api = "https://erza-ai-backup" + suffix + "api/v2/votes"
+
+    requests.post(api, headers=headers, data=data)
+    return jsonify({'message': "vote recorded"}), 200
