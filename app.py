@@ -26,6 +26,7 @@ def vote():
     data = requests.post(api, headers=headers, data=data)
     print(data.status_code)
     print(data.text)
+    print(data.headers)
     return jsonify({'message': "vote recorded"}), 200
 
 if __name__ == '__main__':
