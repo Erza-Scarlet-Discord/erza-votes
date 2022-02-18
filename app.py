@@ -22,5 +22,7 @@ def vote():
     elif requests.get("https://erza-ai-backup" + suffix).status_code == 200:
         api = "https://erza-ai-backup" + suffix + "api/v2/votes"
 
-    requests.post(api, headers=headers, data=data)
+    data = requests.post(api, headers=headers, data=data)
+    print(data.status_code)
+    print(data.text)
     return jsonify({'message': "vote recorded"}), 200
