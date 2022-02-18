@@ -1,4 +1,5 @@
 # basic flask app
+import os
 import flask
 import requests
 from flask import jsonify
@@ -26,3 +27,7 @@ def vote():
     print(data.status_code)
     print(data.text)
     return jsonify({'message': "vote recorded"}), 200
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ['PORT']) if 'PORT' in os.environ else 5000)
+
