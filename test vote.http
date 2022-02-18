@@ -1,0 +1,7 @@
+POST http://127.0.0.1:5000/votes
+Content-Type: application/json
+Authorization: 090807060504030201
+
+{"user": "782909992864186368", "type": "upvote", "query": "", "isWeekend": "False", "bot": "811859628342247424"}
+
+###

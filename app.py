@@ -13,22 +13,20 @@ suffix = ".herokuapp.com/"
 def vote():
     # get request headers and data
     api = "https://localhost:17995/api/v2/votes"
-    headers = flask.request.headers
-    data = flask.request.get_data()
+    data = flask.request.get_json()
     # send request to vote server
-    if requests.get("https://erza-scarlet-26" + suffix).status_code == 200:
-        api = "https://erza-scarlet" + suffix + "api/v2/votes"
-    elif requests.get("https://erza-ai" + suffix).status_code == 200:
-        api = "https://erza-ai" + suffix + "api/v2/votes"
-    elif requests.get("https://erza-ai-backup" + suffix).status_code == 200:
-        api = "https://erza-ai-backup" + suffix + "api/v2/votes"
+    if requests.get("https://erza-scarlet-26.herokuapp.com/").status_code == 200:
+        api = "https://erza-scarlet-26.herokuapp.com/api/v2/votes"
+    elif requests.get("https://erza-ai.herokuapp.com/").status_code == 200:
+        api = "https://erza-ai.herokuapp.com/api/v2/votes"
+    elif requests.get("https://erza-ai-backup.herokuapp.com/").status_code == 200:
+        api = "https://erza-ai-2.herokuapp.com/api/v2/votes"
 
-    data = requests.post(api, headers=headers, data=data)
+
+    print(api)
+    data = requests.post(api, headers={"Authorization": "090807060504030201"}, json=data)
     print(data.status_code)
     print(data.text)
-    print(data.headers)
     return jsonify({'message': "vote recorded"}), 200
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ['PORT']) if 'PORT' in os.environ else 5000)
 
