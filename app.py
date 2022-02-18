@@ -5,7 +5,7 @@ from flask import jsonify
 
 app = flask.Flask(__name__)
 
-suffix = ".herokuapp.com"
+suffix = ".herokuapp.com/"
 
 
 @app.route('/votes', methods=['POST'])
