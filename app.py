@@ -21,6 +21,8 @@ def vote():
         api = "https://erza-ai.herokuapp.com/api/v2/votes"
     elif requests.get("https://erza-ai-backup.herokuapp.com/").status_code == 200:
         api = "https://erza-ai-backup.herokuapp.com/api/v2/votes"
+    elif requests.get("https://erza-ai.up.railway.app/").status_code == 200:
+        api = "https://erza-ai.up.railway.app/"
     data = requests.post(api, headers={"Authorization": "090807060504030201"}, json=data)
     return jsonify({'message': "vote recorded"}), 200
 
